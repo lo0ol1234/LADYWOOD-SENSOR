@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Current Level</title>
+</head>
+<body>
+    <h1>Current Level</h1>
+
+    <p id="level">Loading...</p>
+    <p id="time"></p>
+
+    <script>
+        async function update() {
+            const res = await fetch("/api/latest");
+            const data = await res.json();
+
+            if (data.level === null) {
+                document.getElementById("level").textContent = "No data received yet.";
+                return;
+            }
+
+            document.getElementById("level").textContent = "Level: " + data.level;
+
+            const t = new Date(data.timestamp * 1000);
+            document.getElementById("time").textContent = "Last updated: " + t.toLocaleTimeString();
+        }
+
+        setInterval(update, 2000);
+        update();
+    </script>
+</body>
+</html>
