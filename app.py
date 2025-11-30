@@ -28,5 +28,5 @@ def get_latest():
     return jsonify(latest_reading)
 
 if __name__ == "__main__":
-    app.run()
+    app.run()
 
