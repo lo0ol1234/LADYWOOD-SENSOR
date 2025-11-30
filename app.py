@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import time
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 latest_reading = {"level": None, "timestamp": None}
 
@@ -27,5 +27,6 @@ def receive_level():
 def get_latest():
     return jsonify(latest_reading)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run()
+
